@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
+/** FORM **
+ * Form to input shift times and add shift
+  * Displays total hours worked
+  * Input shift, submit
+  * Reset - delete all shifts, set totals to 0
+*/
 class Form extends Component {
 	constructor(props) {
     super(props);
@@ -8,12 +14,18 @@ class Form extends Component {
     this.resetHandler = this.resetHandler.bind(this);
   }
 
-  // References
+  /** References - shift inputs  **/
 	inHourInput = React.createRef();
 	inMinInput = React.createRef();
 	outHourInput = React.createRef();
 	outMinInput = React.createRef();
 
+  /**
+   * Handles add shift form submit
+   * Validates inputted hours and minutes as numbers
+   * Once validated, inputs passed to formHandler in App
+   * @param   {Object}   e - submit button
+  */
   timeCalc = (e) => {
   	e.preventDefault();
   	
@@ -33,7 +45,13 @@ class Form extends Component {
   }
 
 
-  // Deletes all shifts - only called from resetConfirm
+  /** 
+   * Handles reset button click event
+   * Calls handleClearShifts -> deletes all shifts 
+   * Only called from resetConfirm
+   * Resets all inputs to blank
+   * @param   {Object}   e - Reset button passed from resetConfirm 
+  */
   resetHandler = (e) => {
     // Reset form inputs to 00
     this.inHourInput.current.value = "";
@@ -44,7 +62,11 @@ class Form extends Component {
     this.props.clearAll();   // handleClearShifts
   }
 
-  // Confirm delete all shifts
+  /**
+   * Requires user to confirm before deleting all shifts
+   * @param   {Object}   e - reset button
+   * Once user confirms, calls resetHandler
+  */
   resetConfirm = (e) => {
     e.preventDefault();
     if (window.confirm("Delete all shifts?\nThis cannot be undone")) {
@@ -65,11 +87,11 @@ class Form extends Component {
           <div className="form-group">
             <label htmlFor="inHour">IN</label>
             <input type="number" ref={this.inHourInput} id="inHour" step="1" min="0" max="23" placeholder="00" />
-            <input type="number" ref={this.inMinInput} id="inMinute" step="1" min="0" max="60" placeholder="00" />
+            <input type="number" ref={this.inMinInput} id="inMinute" step="1" min="0" max="59" placeholder="00" />
          
             <label htmlFor="outHour">OUT</label>
             <input type="number" ref={this.outHourInput} id="outHour" step="1" min="0" max="23" placeholder="00" />
-            <input type="number" ref={this.outMinInput} id="outMinute" step="1" min="0" max="60" placeholder="00" />
+            <input type="number" ref={this.outMinInput} id="outMinute" step="1" min="0" max="59" placeholder="00" />
           </div>
           <div>
             <input type="submit" id="submit" value="Submit" />

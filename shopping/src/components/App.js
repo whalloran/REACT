@@ -5,16 +5,23 @@ import Item from './Item';
 import AddItemForm from './AddItemForm';
 
 class App extends Component {
-  
-  state = {
-    items: [],
-    counter: 0
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [],
+      counter: 0,
+    };
+  }
 
   /* Item ID Counter */
   prevItemId = 0;
 
-  /* Bought counter change handler -------------- */
+  /** 
+   * Bought count change handler - countChange
+   * @param {boolean} currentState indicates checkbox state
+   * if true, becomes false (uncheck), subtract 1 from counter 
+   * if false, becomes true (check), add 1 to bought counter  
+  */
   handleCountChange = (currentState) => {
     if (currentState === false) {
       this.setState( prevState => ({
@@ -29,7 +36,12 @@ class App extends Component {
     }
   }
 
-  /* Item quantity change handler -------------- */
+  /** 
+   * Item quantity change handler - changeQty
+   * Adjusts item quantity when + / - button is clicked
+   * @param   {integer}   index - item index in items array
+   * @param   {integer}   delta - quantity change value (1 || -1)
+  */
   handleQtyChange = (index, delta) => {
     if (this.state.items[index].qty + delta < 1) {
       this.setState( prevState => ({
@@ -44,7 +56,12 @@ class App extends Component {
 
   }
 
-   /* Add item handler ------------------------ */
+  /** 
+    * Add item handler - addItem
+    * Adds item to shopping list
+    * @param   {string}   name - item name as inputted by user
+    * @return   {Object[]}   items - all items that have been added
+  */
   handleAddItem = (name) => {
     this.setState( prevState => {
       return {
@@ -60,7 +77,11 @@ class App extends Component {
     });
   }
 
-  /* Remove Item ------------------------------------ */
+  /** Remove item handler - removeItem
+   * Removes item from list when remove (X) button is clicked
+   * @param   {integer}   id - id of item to be removed
+   * @return   {Object[]}   items - all items after removal
+  */
   handleRemoveItem = (id) => {
     this.setState( prevState => {
       return {
@@ -69,7 +90,12 @@ class App extends Component {
     });
   }
 
-  /* Clear list - remove all items, set bought counter to 0 */
+  /** Clear list handler - clearAll
+   * Removes all items from list
+   * Sets bought counter to 0 
+   * @param   {integer}   id - id of each item on list
+   * @return   {Object[]}   items - empty items array
+  */
   handleClearItems = (id) => {
     this.setState( prevState => {
       return {
@@ -88,19 +114,34 @@ class App extends Component {
 
     return (
       <div className="shopping">
+        {/** App Header
+           * Item quantity counter
+           * App title
+           * Bought items counter
+           * Clear All button
+        */}
         <Header 
           items={this.state.items}
           counter={this.state.counter}
           clearAll={this.handleClearItems}          
         />
 
-        {/* items list */}
-        {this.state.items.map( (player, index) =>
+        {/** Items List 
+          * Displays list of all items that have been added
+           * Remove item button (X)
+           * Check svg - bought item
+           * Item name
+           * Item quantity counter
+          * Creates new array with all items, properties
+          * @param   {Object}   item - item that has been added
+          * @param   {integer}   index - item index in items array
+        */}
+        {this.state.items.map( (item, index) =>
           <Item 
-            name={ player.name }
-            qty={ player.qty }
-            id={ player.id }
-            key={ player.id.toString() }
+            name={ item.name }
+            qty={ item.qty }
+            id={ item.id }
+            key={ item.id.toString() }
             index={ index }
             changeQty={ this.handleQtyChange } 
             removeItem={ this.handleRemoveItem }
@@ -108,7 +149,10 @@ class App extends Component {
             countChange={ this.handleCountChange }
           />
         )}
-
+        {/* Add Item Form 
+           * Add item input
+           * Submit button
+        */}
         <AddItemForm addItem={this.handleAddItem} />
       </div>
     );

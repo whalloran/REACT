@@ -4,7 +4,13 @@ import propTypes from 'prop-types';
 import Quantity from './Quantity';
 import Checked from './Checked';
 
-/* Displays items & remove buttons, imports & renders checks, quantity counter  */
+/**  ITEM  **
+ * Displays Items as they are added
+ * Displays Item remove buttons
+ * @import Checked - bought checkboxes
+ * @import Quantity - item quantity counter
+ * @export to App
+*/
 class Item extends PureComponent {
 
   constructor(props) {
@@ -17,9 +23,13 @@ class Item extends PureComponent {
     this.removeHandler = this.removeHandler.bind(this);
   }
 
-  /* Maintain Item active state === Checked active state */
+  /**
+   * Maintains item checked state
+   * @param   {boolean}   currentState - state passed from Checked
+   * @returns   {boolean}   active state == currentState
+  */
   getState(currentState) {
-    if (this.state.active !== currentState) {       /* Avoids infinite render loop */
+    if (this.state.active !== currentState) {     /* Avoids infinite render loop */
       this.setState( prevState => {
         return {
           active: currentState
@@ -28,7 +38,10 @@ class Item extends PureComponent {
     }
   }
 
-  /* Calls remove item handler & adjusts bought based on active state  */
+  /**
+   * Remove item - pass id to handleRemoveItem
+   * Adjusts bought based on active state 
+  */
   removeHandler () {
     const { 
       removeItem,
@@ -36,10 +49,12 @@ class Item extends PureComponent {
       countChange
     } = this.props;
     
-    removeItem(id);      /* handleRemoveItem */
+    removeItem(id);     /* handleRemoveItem */
     
+    /* Subtract 1 from Bought counter 
+        when active checked item is removed */
     if (this.state.active === true) {
-      countChange(true);  /* Subtract 1 from Bought when checked item is removed */
+      countChange(true);     /* handleCountChange */ 
     }
   }
 
@@ -55,7 +70,6 @@ class Item extends PureComponent {
       active
 		} = this.props;
 
-                    //() => removeItem(id)
     return (
       <div className="item">
 		    <span className="item-name">
@@ -79,7 +93,7 @@ class Item extends PureComponent {
 	}	
 }
 
-/* PropTypes ------------------------- */
+/** PropTypes ------------------------- */
 Item.propTypes = {
   active: propTypes.bool,
   name: propTypes.string,

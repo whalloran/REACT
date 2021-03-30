@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
+/** Times **
+ * Displays all shifts 
+  * Delete shift (X) button
+  * Shift in and out times
+  * Total shift time - clockTime - HH:MM
+  * Total shift time - timeDec - 12.34
+*/
 class Times extends Component {
 	constructor(props) {
     super(props);
 
     this.deleteHandler = this.deleteHandler.bind(this);
   }
-
+  	/** 
+  	 * Handles delete shift button (X) click
+  	 * @param   {Object}   e - delete shift button
+  	 * Calls handleDeleteShift(id) - App
+  	   * @param   id   {integer} - item id
+  	 * Calls handleTotalChange(timeDec) - App
+  	   * @param   {number}   timeDec - total shift time 12.34
+  	*/
 	deleteHandler = (e) => {
     const { 
       deleteShift,

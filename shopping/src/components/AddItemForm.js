@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
-/* Add Item Component */
+/**  ADD ITEM FORM  **
+ * Form input to add new item to list
+ * Add item submit button
+ * @export to App
+*/
 
 class AddItemForm extends Component {
 
 	itemInput = React.createRef();
 
-	/* Adds item and resets input value */
+	/**
+	 * Handles Add Item button click
+	 * @param   {Object}   e - form 
+	 * Adds new item to list - handleAddItem
+	 * Resets input value to blank 
+	*/
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.addItem(this.itemInput.current.value);
@@ -24,6 +33,7 @@ class AddItemForm extends Component {
 					ref={ this.itemInput } 
 					placeholder="Enter item"
 					minLength="1"
+					maxLength="18"
 				/>
 				<input type="submit" value="Add Item" />
 			</form>

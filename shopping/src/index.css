@@ -6,7 +6,7 @@
 /* ELEMENT STYLES -------------------- */
 
 body {
-  background: #e8e7e7; 
+  background: #e8e7e7;   
   font-family: arial;
  
   text-transform: uppercase;
@@ -17,7 +17,7 @@ body {
 
 .shopping {
   background: #fff;
-  width: 700px;
+  width: 100%;
   margin: 70px auto;
   box-shadow: 0 2px 0 rgb(133, 104, 250);
   border-radius: 6px;
@@ -50,20 +50,24 @@ header h1 {
 
 .count {
   display: flex;
-  margin: 0 0 0 28px;
+  margin: 0;
   font-weight: 800;
 }
 
-  .count td:first-child {
-    text-align: right;
-    font-weight: 800;
-    letter-spacing: 2px;
-    font-size: .8em;
-  }
+.count td:first-child {
+  text-align: right;
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: .8em;
+}
 
-  .count td:last-child {
-    text-align: left;
-  }
+.count td:last-child {
+  text-align: left;
+}
+
+.count-num {
+  vertical-align: bottom;
+}
 
 /* BOUGHT COUNTER -------------------- */
 .bought {
@@ -108,7 +112,7 @@ header h1 {
 /* ITEMS -------------------- */
 .item {
   display: flex;
-  font-size: 1.2em;
+  font-size: 0.8em;
   border-bottom: solid 2px #EEEEEE;
   letter-spacing: 2px;
 }
@@ -280,4 +284,29 @@ input[type=submit] {
   outline: none;
   transition: background-color 0.2s ease,
               color 0.2s ease;
+}
+
+.mobileHide {
+  display: none;
+}
+
+/** MEDIA QUERIES  **/
+
+@media (min-width: 700px) {
+  .shopping {
+    width: 700px;
+    max-width: 100%;
+  }
+
+  .mobileHide {
+    display: inline;
+  }
+
+  .count {
+  margin: 0 0 0 28px;
+  }
+
+  .item {
+    font-size: 1.2em;
+  }
 }

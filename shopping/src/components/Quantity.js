@@ -1,8 +1,17 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-const Quantity = ({index, qty, changeQty}) => {
+/** QUANTITY **
+ * Item quantity counter - increase / decrease quantity
+ * Handles +/- button clicks
+ * @param   {integer}   index - index of item in items array
+ * @param   {qty}   qty - individual item quantity
+ * @param   {function}   changeQty - handles qty change - handleQtyChange
+ * @export to Item
+*/
 
+const Quantity = ({index, qty, changeQty}) => {
+console.log(typeof index);
   return (
     <div className="counter">
       <button className="counter-action decrement" onClick={() => changeQty(index, -1)}> - </button>

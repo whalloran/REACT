@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
+/** BOUGHT **
+ * Renders bought item counter in Header
+ * Clear List button - clear all items handler
+ * @export to Header
+*/
 class Bought extends Component {
 	constructor(props) {
     	super(props);
 		this.clearHandler = this.clearHandler.bind(this);
 	}
 	
+	/** 
+	 * Invokes handleClearItems in App when button is clicked
+	*/
 	clearHandler() {	
 		this.props.clearAll();
 	}

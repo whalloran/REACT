@@ -3,7 +3,19 @@ import propTypes from 'prop-types';
 import Bought from './Bought';
 import Count from './Count';
 
-/* HEADER - Count, Title, Bought ---------------------- */
+/** HEADER  **
+ * Render App Header
+ * Import Count - total items and total qty counters
+ * Display App title
+ * Import Bought - bought item counter, clear all button
+ 
+ * @param   {Array}   items - items that have been added
+ * @param   {integer}   counter - bought counter (items checked)
+ * @param   {function}   clearAll - clears all items from list - handleClearItems
+ * @param   {string}   title - App title
+ 
+ * Export to App
+*/
 
 const Header = ({ items, counter, clearAll, title }) => {
 	return (

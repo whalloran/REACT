@@ -6,6 +6,15 @@ import Times from './Times';
 
 import '../App.css';
 
+/**  WORK TIME CALCULATOR
+ * Takes times worked as inputs and calculates totals
+ * Totals in time (HH:MM) and number (12.34) formats
+ * Displays all inputted shifts, shift totals
+ * Maintains and displays running total of time worked
+ * Submit button adds shift and calculates time
+ * Reset button removes all shifts and resets totals
+*/
+
 class App extends Component {
   
   constructor(props) {
@@ -24,10 +33,18 @@ class App extends Component {
   /* Shift ID Counter */
   prevItemId = 0;
 
-  // Receive time inputs from Form to calculate & display
+  /** 
+   * Receive time inputs from Form to calculate & display
+   * Calculate shift time, total time
+   * Add shift to shift list for display
+   * param   {integer}   inHour - User input IN Hour
+   * param   {integer}   inMin - User input IN Minute
+   * param   {integer}   outHour - User input OUT Hour
+   * param   {integer}   outMin - User input OUT Minute
+  */
   formHandler = (inHour, inMin, outHour, outMin) => {
 
-    // Reset hours, min, times[]
+    /* Reset hours, min, times[] */
     let hours = 0;
     let minutes = 0;
 
@@ -35,11 +52,11 @@ class App extends Component {
       times: []
     })
 
-    // Display In & Out Times
+    /* Display In & Out Times */
     let times = this.state.times;
     times.push(inHour, inMin, outHour, outMin);
 
-    // Add zero before single digit hours & minutes
+    /* Add zero before single digit hours & minutes */
     for (let i=0; i < times.length; i++) {
       if (times[i].toString().length === 1) {
         times[i] = "0" + times[i];
@@ -47,7 +64,6 @@ class App extends Component {
     }
   
 /* -------------------- Calculate Time -------------------- */
-
     if (inMin > outMin  && inHour < outHour) {
       minutes = 60 - inMin + outMin;
       hours = outHour - inHour - 1;
@@ -63,7 +79,7 @@ class App extends Component {
       minutes = 60 - inMin + outMin;
     }
 
-    // inHour < outHour && inMin < outMin
+    /* inHour < outHour && inMin < outMin */
     else {
       hours = outHour - inHour;
       minutes = outMin - inMin;
@@ -72,7 +88,7 @@ class App extends Component {
     let clockHours = hours.toString();
     let clockMinutes = minutes.toString();
 
-    // Clock hours display - add leading 0
+    /* Clock hours display - add leading 0 */
     if (clockHours.toString().length === 1) {
         clockHours = "0" + hours;
     }
@@ -83,17 +99,17 @@ class App extends Component {
 
     const timeDeci = hours + (minutes / 60);
     
-    // Total Hours Counter - add hours to total (decimal)
+    /* Total Hours Counter - add hours to total (decimal) */
     this.setState( prevState => ({
         decTotal: prevState.decTotal += timeDeci
     }));
 
 /* -------------------- Add Shift -------------------- */
     
-    // Shift ID counter 
+    /* Shift ID counter */
     this.prevItemId += 1;
 
-    // Add Shift to list
+    /* Add Shift to list */
     this.setState( prevState => {
       return {
         shifts: [
@@ -108,9 +124,13 @@ class App extends Component {
         ]
       }
     });
-  } // End formHandler()
+  }     /* End formHandler() */
 
-  /* Delete Shift ------------------------------------ */
+  /** 
+   * Deletes selected shift - deleteHandler
+   * @param   {integer}   id - shift id
+   * @return {Object[]}   shifts - array after shift removed
+  */
   handleDeleteShift = (id) => {
     this.setState( prevState => {
       return {
@@ -119,7 +139,10 @@ class App extends Component {
     });
   }
 
-   /* Adjust Total when Shift is deleted -------------- */
+  /** 
+   * Adjust total time when shift is deleted
+   * @param   {number}   decTime - total time of deleted shift 12.34
+  */
   handleTotalChange = (decTime) => {
     this.setState( prevState => ({
       decTotal: prevState.decTotal - decTime
@@ -127,7 +150,14 @@ class App extends Component {
     
   }
 
-  /* Clear list - remove all items, set bought counter to 0 */
+  /**
+   * Deletes all shifts - clearAll
+   * Sets total time worked to 0
+   * Called in Form - resetHandler
+   * @param   {integer}   id - id of each added shift
+   * @return   {Array}   shifts - empty shifts array
+   * @return   {number}   decTotal - total time worked = 0 
+  */
   handleClearShifts = (id) => {
     this.setState( prevState => {
       return {

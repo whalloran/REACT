@@ -1,8 +1,13 @@
-import React, {Component} from 'react';
+import React, { PureComponent } from 'react';
 import propTypes from 'prop-types';
 
-/* Renders checkbox and handles click event - add / remove class */
-class Checked extends Component {
+/** CHECKED **
+ * Renders check svg and handles check click event
+  * Toggle check svg style on click - toggleClass
+  * Update bought qty and active state - checkHandler
+ * @export to Item
+*/
+class Checked extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,15 +16,20 @@ class Checked extends Component {
 
     this.toggleClass = this.toggleClass.bind(this);
     this.checkHandler = this.checkHandler.bind(this);
-    //this.getState = this.getState.bind(this);
-
   }
  
- /* Toggles check style - fill */
+ /** 
+  * Toggles check state and style class .checked (svg fill)
+ */
   toggleClass() {
     this.setState({ active: !this.state.active });    
   };
 
+  /**
+   * Bought checkbox onClick handler
+   * countChange updates bought quantity
+   * getState maintains item active state
+  */
   checkHandler() {
     this.toggleClass();
     
