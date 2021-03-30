@@ -88,7 +88,8 @@ class Form extends Component {
             <label htmlFor="inHour">IN</label>
             <input type="number" ref={this.inHourInput} id="inHour" step="1" min="0" max="23" placeholder="00" />
             <input type="number" ref={this.inMinInput} id="inMinute" step="1" min="0" max="59" placeholder="00" />
-         
+         </div>
+         <div className="form-group">
             <label htmlFor="outHour">OUT</label>
             <input type="number" ref={this.outHourInput} id="outHour" step="1" min="0" max="23" placeholder="00" />
             <input type="number" ref={this.outMinInput} id="outMinute" step="1" min="0" max="59" placeholder="00" />
