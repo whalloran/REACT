@@ -1,0 +1,133 @@
+body {
+  background-color: #000;
+}
+
+.App {
+  text-align: center;
+}
+
+.root {
+  margin-top: 50px;
+  display: flex;
+  margin: auto;
+}
+
+.cardcss {
+  margin: auto;
+  width: 100%;
+  padding: 1rem;
+}
+
+.pageContainer {
+  width: 450px;
+  margin: 25px auto;
+  border-radius: 25px;
+  color: #fff;
+  min-height: 400px;
+  
+  background: hsla(199, 93%, 52%, 1);
+  background: linear-gradient(270deg, hsla(199, 93%, 52%, 1) 0%, hsla(200, 94%, 53%, 1) 44%, hsla(209, 100%, 48%, 1) 62%, hsla(207, 87%, 46%, 1) 79%, hsla(226, 100%, 34%, 1) 100%);
+  background: -moz-linear-gradient(270deg, hsla(199, 93%, 52%, 1) 0%, hsla(200, 94%, 53%, 1) 44%, hsla(209, 100%, 48%, 1) 62%, hsla(207, 87%, 46%, 1) 79%, hsla(226, 100%, 34%, 1) 100%);
+  background: -webkit-linear-gradient(270deg, hsla(199, 93%, 52%, 1) 0%, hsla(200, 94%, 53%, 1) 44%, hsla(209, 100%, 48%, 1) 62%, hsla(207, 87%, 46%, 1) 79%, hsla(226, 100%, 34%, 1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#12ADF6", endColorstr="#15AEF8", GradientType=1 );
+  
+}
+
+.card {
+  margin: auto;
+  border: 0px;
+  border-radius: 25px;
+  padding: 10px;
+  color: #fff;
+  background: transparent;
+}
+
+.zip-input {
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 7px;
+  color: #000;
+  font-weight: 700;
+  border: 0;
+}
+
+.date {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.city {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  padding-left: 20px;
+  
+}
+
+.region {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-top: -10px;
+  padding-left: 20px;
+
+}
+
+.wind {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: auto;
+  text-align: center;
+}
+
+.description {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.lat-lon {
+  padding: 0;
+  text-align: right;
+  font-size: .9rem;
+  display: none;
+}
+
+.temp {
+  font-size: 3.2rem;
+  font-weight: 600;
+  text-align: center;
+  
+}
+
+.raindrop {
+  width: 8px;
+  color: #fff;
+}
+
+.hourly-title {
+  font-weight: 700;
+}
+
+.hourly-table {
+  margin: auto;
+  width: 100%;
+}
+
+.hourly-table div div {
+  text-align: center;
+}
+
+.hourly-table div div:nth-of-type(1) {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.home-container {
+  text-align: center;
+}
+
+.home-title {
+  font-family: 'Architects Daughter', cursive;
+  margin-top: 1.5rem;
+}
